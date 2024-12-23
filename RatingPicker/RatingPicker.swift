@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RatingPicker: View {
     
-    @Binding var rating: Int
+    let rating: Int
     
     var imageName = "star"
     var color = Color.yellow
@@ -24,7 +24,7 @@ struct RatingPicker: View {
                 )
                 .frame(width: 40, height: 40)
                 .onTapGesture {
-                    rating = index
+//                    rating = index
                 }
             }
         }
@@ -52,5 +52,5 @@ struct Symbol: View {
 }
 
 #Preview {
-    RatingPicker(rating: .constant(3)).preferredColorScheme(.dark)
+    RatingPicker(rating: 3).preferredColorScheme(.dark)
 }

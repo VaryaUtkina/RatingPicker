@@ -14,14 +14,18 @@ struct MainView: View {
         ZStack {
             Color.black.ignoresSafeArea()
             
-            VStack {
-                Text("\(viewModel.rating)")
-                    .font(.system(size: 78))
-                    .bold()
-                    .foregroundStyle(Color.white)
-                
-                RatingPicker(rating: $viewModel.rating)
+            VStack(spacing: 32) {
+                ForEach(viewModel.movies, id: \.id) { movie in
+                    Text(movie.title)
+                    
+                    RatingPicker(
+                        rating: movie.rating,
+                        imageName: movie.icon ?? "star",
+                        color: movie.color ?? .blue
+                    )
+                }
             }
+            .foregroundStyle(.white)
         }
     }
 }
