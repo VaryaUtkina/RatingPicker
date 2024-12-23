@@ -11,13 +11,21 @@ struct RatingPicker: View {
     
     @Binding var rating: Int
     
+    var imageName = "star"
+    var color = Color.yellow
+    
     var body: some View {
         HStack {
             ForEach(1 ..< 6) { index in
-                Star(fill: fillingFor(index))
-                    .onTapGesture {
-                        rating = index
-                    }
+                Symbol(
+                    fill: fillingFor(index),
+                    imageName: imageName,
+                    color: color
+                )
+                .frame(width: 40, height: 40)
+                .onTapGesture {
+                    rating = index
+                }
             }
         }
     }
@@ -27,15 +35,19 @@ struct RatingPicker: View {
     }
 }
 
-struct Star: View {
+struct Symbol: View {
     let fill: Bool
     
+    var imageName = "star"
+    var color = Color.yellow
+    
+    private let size: CGFloat = 24
+    
     var body: some View {
-        Image(systemName: fill ? "star.fill" : "star")
+        Image(systemName: fill ? "\(imageName).fill" : "\(imageName)")
             .resizable()
-            .frame(width: 40, height: 40)
-            .foregroundStyle(.yellow)
-            .frame(width: 52, height: 52)
+            .frame(width: size, height: size)
+            .foregroundStyle(color)
     }
 }
 

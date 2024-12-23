@@ -7,26 +7,25 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    
-    @State private var movieRating = 3
+struct MainView: View {
+    @ObservedObject var viewModel = MainViewModel.shared
     
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             
             VStack {
-                Text("\(movieRating)")
+                Text("\(viewModel.rating)")
                     .font(.system(size: 78))
                     .bold()
                     .foregroundStyle(Color.white)
                 
-                RatingPicker(rating: $movieRating)
+                RatingPicker(rating: $viewModel.rating)
             }
         }
     }
 }
 
 #Preview {
-    ContentView()
+    MainView()
 }
