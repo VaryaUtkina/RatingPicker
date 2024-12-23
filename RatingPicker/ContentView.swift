@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var movieRating = 3
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Color.black.ignoresSafeArea()
+            
+            VStack {
+                Text("\(movieRating)")
+                    .font(.system(size: 78))
+                    .bold()
+                    .foregroundStyle(Color.white)
+                
+                RatingPicker(rating: $movieRating)
+            }
         }
-        .padding()
     }
 }
 
