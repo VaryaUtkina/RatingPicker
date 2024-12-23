@@ -14,9 +14,13 @@ struct RatingPicker: View {
     var imageName = "star"
     var color = Color.yellow
     
+    let action: (Int) -> ()
+    
+    private let length = 5
+    
     var body: some View {
         HStack {
-            ForEach(1 ..< 6) { index in
+            ForEach(1 ..< (length + 1), id: \.self) { index in
                 Symbol(
                     fill: fillingFor(index),
                     imageName: imageName,
@@ -24,7 +28,7 @@ struct RatingPicker: View {
                 )
                 .frame(width: 40, height: 40)
                 .onTapGesture {
-//                    rating = index
+                    action(index)
                 }
             }
         }
@@ -51,6 +55,3 @@ struct Symbol: View {
     }
 }
 
-#Preview {
-    RatingPicker(rating: 3).preferredColorScheme(.dark)
-}

@@ -12,7 +12,7 @@ struct Movie: Identifiable {
     let title: String
     let color: Color?
     let icon: String?
-    let rating: Int
+    var rating: Int
     
     init(title: String, color: Color? = nil, icon: String? = nil, rating: Int) {
         self.title = title

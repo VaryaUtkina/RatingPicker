@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @ObservedObject var viewModel = MainViewModel.shared
+    @State var viewModel = MainViewModel.shared
     
     var body: some View {
         ZStack {
@@ -21,7 +21,10 @@ struct MainView: View {
                     RatingPicker(
                         rating: movie.rating,
                         imageName: movie.icon ?? "star",
-                        color: movie.color ?? .blue
+                        color: movie.color ?? .blue,
+                        action: { rating in
+                            viewModel.setRatingTo(rating, for: movie.id)
+                        }
                     )
                 }
             }
